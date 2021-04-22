@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+struct point
+{
+    ll idx, val;
+};
+bool cmp(point a, point b)
+{
+    if(a.val!=b.val) return a.val<b.val;
+    else return a.idx<b.idx;
+}
+
+int main()
+{
+    ll t;  cin>>t;
+    while(t--)
+    {
+        ll n;  cin>>n;
+
+        vector<point>v(n);
+        vector<ll>ans;
+        for(ll i=0;i<n;i++)
+        {
+            ll a; cin>>a;
+            v[i].val =a;
+            v[i].idx =i;
+        }
+        sort(v.begin(),v.end(),cmp);
+        vector<ll>pref(n);
+        pref[0]=v[0].val;
+
+        for(ll i=1;i<n;i++)
+        {
+            pref[i]=pref[i-1]+v[i].val;
+        }
+		ans.push_back(v[n-1].idx+1);
+	//	for(auto i : pref) cout<<i<<" ";
+	//	cout<<endl;
+		
+       for(ll i=n-2;i>=0;i--)
+       {
+       		if(pref[i]>=v[i+1].val) ans.push_back(v[i].idx+1);
+       		else break;
+       }
+       sort(ans.begin(),ans.end());
+       cout<<ans.size()<<endl;
+       for(auto i : ans)
+       {
+       	cout<<i<<" ";
+       }
+       cout<<endl;
+
+    }
+
+
+}

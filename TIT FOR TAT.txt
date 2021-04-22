@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+int main()
+{
+    ll t;  cin>>t;
+    while(t--)
+    {
+        ll n,k;  cin>>n>>k;
+        vector<ll>v(n);
+
+        for(auto &it : v) cin>>it;
+        ll i=0;
+        while(k )
+        {
+        	  if(v[i]==0) 
+        	  {
+        	  	if(i==n-1) break;
+        	  	else{
+        	  	i++;
+        		continue;
+        	  	}
+        	  }
+            
+            v[i]--;
+          
+            v[n-1]++;
+            k--;
+        }
+        for(auto i : v)  cout<<i<<" ";
+
+        cout<<endl; 
+
+    }
+}

@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+#define REP(i,n) for (int i = 1; i <= n; i++)
+#define mod 1000000007
+#define pb push_back
+#define ff first
+#define ss second
+#define ii pair<int,int>
+#define vi vector<int>
+#define vii vector<ii>
+#define lli long long int
+#define INF 1000000000
+#define endl '\n'
+const double PI = 3.141592653589793238460;
+typedef std::complex<double> Complex;
+typedef std::valarray<Complex> CArray;
+using namespace std;
+ 
+char getFC(string st)
+{
+	int ar[] = {0 , 0};
+ 
+	for(char ch : st)
+	ar[ch - '0']++;
+ 
+	if(ar[0] > ar[1]) return '0';
+	else			  return '1';
+}
+ 
+int main()
+{
+	int t , n;
+	string a , b , c;
+ 
+	cin>>t;
+	while(t--)
+	{
+		cin>>n;
+		cin>>a>>b>>c;
+ 
+		string x , y;
+		char code;
+ 
+		if(getFC(a) == getFC(b))
+		x = a , y = b , code = getFC(a);
+		else
+		if(getFC(a) == getFC(c))
+		x = a , y = c , code = getFC(a);
+		else
+		x = b , y = c , code = getFC(b);
+ 
+		int l = 0 , r = 0;
+ 
+		while(l < x.size() && r < y.size())
+		{
+			while(l < x.size() && x[l] != code) cout<<x[l++];
+			if(l == x.size()) break;
+ 
+			while(r < y.size() && y[r] != code) cout<<y[r++];
+			if(r == y.size()) break;
+ 
+			if(x[l] == y[r]) cout<<x[l] , l++,r++;
+			else			 cout<<x[l] , l++;
+		}
+ 
+		while(l < x.size())
+		cout<<x[l++];
+ 
+		while(r < y.size())
+		cout<<y[r++];
+ 
+		cout<<endl;
+	}
+}
